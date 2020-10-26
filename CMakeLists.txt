@@ -8,6 +8,9 @@ set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 
+set(CMAKE_COMM_FLAGS "-rdynamic -std=c++11 -g3 -ggdb3 -Wall -Wfatal-errors -Wextra -Wall")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_COMM_FLAGS}")
 
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -25,3 +28,4 @@ link_directories(${CMAKE_SOURCE_DIR}/ext/libevent/lib)
 ####################################
 add_subdirectory(libevent/src)
 add_subdirectory(libevent/client)
+add_subdirectory(alth)
