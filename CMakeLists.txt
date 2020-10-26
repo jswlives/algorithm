@@ -20,8 +20,8 @@ link_directories(${CMAKE_SOURCE_DIR}/ext/libevent/lib)
 
 
 ###################################
-link_libraries(event)
+
 
 ####################################
-add_subdirectory(src)
-add_subdirectory(client)
+add_subdirectory(libevent/src)
+add_subdirectory(libevent/client)
