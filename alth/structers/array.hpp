@@ -1,8 +1,10 @@
+#pragma once
+
 #include <cassert>
 #include <cstdint>
 #include <cstring>
 #include "array.h"
-namespace jsw {
+#include <iostream>
 
 template<typename T>
 array_t<T>::array_t(int iCapacity)
@@ -45,4 +47,38 @@ T& array_t<T>::operator [](int idx)
 }
 
 
+template<typename T>
+void array_t<T>::print()
+{
+	for (int i = 0; i < count; ++i)
+	{
+		std::cout << "idx:" << i << " value:" << pdata[i] << std::endl;
+	}
+}
+
+template<typename T>
+bool array_t<T>::ordered()
+{
+	for (int i = 0; i < count-1; ++i)
+	{
+		if (pdata[i] > pdata[i+1])
+		{
+			std::cout << "index:" << i << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
+
+template<typename T>
+void array_t<T>::print_sorted()
+{
+	if (ordered())
+	{
+		std::cout << "array is sorted:)" << std::endl;
+	}
+	else
+	{
+		std::cout << "array is not sorted!" << std::endl;
+	}
 }

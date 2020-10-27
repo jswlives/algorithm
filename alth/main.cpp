@@ -1,16 +1,22 @@
 #include "array.hpp"
 #include <iostream>
+#include <stdlib.h>
+#include "comm_sort.h"
 
 int main()
 {
-	jsw::array_t<int> starray(10);
-	for (int i = 0; i < 100; ++i)
+	int runtimes = 10;
+	array_t<int> starray(runtimes);
+	for (int i = 0; i < runtimes; ++i)
 	{
-		starray.add(i, true);
-	}
-	for (int i = 0; i < starray.size(); ++i)
-	{
-		std::cout << starray[i] << std::endl;
+		starray.add(rand() % runtimes, true);
 	}
 
+	//pop_sort(starray);
+	//insert_sort(starray);
+	//select_sort(starray);
+	starray.print_sorted();
+	merge_sort(starray);
+	starray.print_sorted();
+	starray.print();
 }
