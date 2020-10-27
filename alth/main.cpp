@@ -5,18 +5,16 @@
 
 int main()
 {
-	int runtimes = 10;
+	int runtimes = 500;
 	array_t<int> starray(runtimes);
 	for (int i = 0; i < runtimes; ++i)
 	{
 		starray.add(rand() % runtimes, true);
 	}
-
+	merge_sort(starray);
 	//pop_sort(starray);
 	//insert_sort(starray);
 	//select_sort(starray);
-	starray.print_sorted();
-	merge_sort(starray);
-	starray.print_sorted();
 	starray.print();
+	starray.print_sorted();
 }
