@@ -64,9 +64,22 @@ void select_sort(array_t<int>& array)
 
 void merge(array_t<int>& array, int begin, int end, int lbegin, int lend, int rbegin, int rend)
 {
-
+	//std::cout << "begin================" << std::endl;
 	int array_size = end - begin + 1;
 	array_t<int> temp_array(array_size);
+
+/*
+	std::cout << "-----------------------" << std::endl;
+	for (int i = lbegin; i <= lend; ++i)
+	{
+		std::cout << array[i] << std::endl;
+	}
+	std::cout << "-----------------------" << std::endl;
+	for (int i = rbegin; i <= rend; ++i)
+	{
+		std::cout << array[i] << std::endl;
+	}
+	std::cout << "-----------------------" << std::endl;*/
 
 	while (lbegin <= lend && rbegin <= rend)
 	{
@@ -77,7 +90,6 @@ void merge(array_t<int>& array, int begin, int end, int lbegin, int lend, int rb
 		else
 		{
 			temp_array.add(array[rbegin++]);
-			rbegin++;
 		}
 	}
 	while (lbegin <= lend)
@@ -92,7 +104,9 @@ void merge(array_t<int>& array, int begin, int end, int lbegin, int lend, int rb
 	{
 		array[begin + i] = temp_array[i];
 	}
-	//std::cout << "end================" << std::endl;
+/*
+	temp_array.print();
+	std::cout << "end================" << std::endl;*/
 
 }
 

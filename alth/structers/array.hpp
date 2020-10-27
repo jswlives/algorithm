@@ -79,6 +79,6 @@ void array_t<T>::print_sorted()
 	}
 	else
 	{
-		std::cout << "array is not sorted!" << std::endl;
+		std::cout << "XXXXXXXXXXXXXXXXXX" << std::endl;
 	}
 }
