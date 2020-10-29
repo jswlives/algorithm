@@ -132,8 +132,12 @@ void merge_sort(array_t<int>& array)
 	merge_sort_c(array, 0, array.size() - 1);
 }
 
-//双边循环法
-int partation(array_t<int>& array, int begin, int end)
+
+//==================================================
+//==================================================
+//双边循环法（严蔚敏版）
+//直观易，但容易出错
+int partation_v1(array_t<int>& array, int begin, int end)
 {
 	int pivot = begin;
 
@@ -161,44 +165,16 @@ int partation(array_t<int>& array, int begin, int end)
 
 }
 
-/*
 
-int partation_v2(array_t<int>& array, int begin, int end)
-{
-	int pivot = array[begin];
-
-	while (left != right)//跟（left < right）一样， 下面的while（right > left）已经保证了
-	{
-		while (right > left && array[right] >= pivot)//小于等于基准值的放左边
-		{
-			right--;
-		}
-		if (left( < right))
-		{
-
-		}
-		while (right > left&& array[left] <= array[pivot])//大于基准值的放右边
-		{
-			left++;
-		}
-		if (left < right)
-		{
-			swap(&array[left], &array[right]);
-		}
-	}
-
-}
-*/
-
-//单边循环法
+//单边循环法(小灰灰算法版)
 //mark的元素永远<= pivot
-int partation_v3(array_t<int>& array, int begin, int end)
+int partation_v2(array_t<int>& array, int begin, int end)
 {
 	int mark = begin;
 	int pivot = array[begin];
 	for (int i = mark + 1; i <= end; ++i)
 	{
-		if (array[i] <= pivot)// <= 或者 < 都可以
+		if (array[i] < pivot)// <= 或者 < 都可以?
 		{
 			swap(&array[++mark], &array[i]);
 		}
@@ -206,6 +182,44 @@ int partation_v3(array_t<int>& array, int begin, int end)
 	swap(&array[begin], &array[mark]);
 	return mark;
 }
+
+//算法导论版
+int partation_v3(array_t<int>& array, int begin, int end)
+{
+	int mark = begin;
+	int pivot = array[end];
+	for (int i = begin; i < end; ++i)
+	{
+		if (array[i] < pivot)
+		{
+			swap(&array[mark], &array[i]);
+			mark++;
+		}
+		else
+		{
+			//++i
+		}
+	}
+	swap(&array[end], &array[mark]);
+	return mark;
+}
+
+/*
+def Partition(A, p, r) :
+	# 输入：对A[p..r]进行划分
+	# 输出：划分完成后pivot的新位置
+
+	pivot = A[r]
+	nextExchangeId = p
+	# i要从p开始，防止A[p]是 < pivot的元素，后面被换到 >= pivot的一边
+	for i in range(p, r) :
+		if A[i] < pivot :
+			A[nextExchangeId], A[i] = A[i], A[nextExchangeId]
+			nextExchangeId += 1
+			# 最后将pivot换到中间，并返回这个中间位置，用于下次Partition
+	A[nextExchangeId], A[r] = A[r], A[nextExchangeId]
+	return nextExchangeId*/
+
 
 //挖坑填数法，优点是埋坑，不用交换元素，减少交换次数
 int partation_v4(array_t<int>& array, int begin, int end) //返回调整后基准数的位置  
@@ -223,7 +237,8 @@ int partation_v4(array_t<int>& array, int begin, int end) //返回调整后基�
 
 		if (i < j)
 		{
-			array[i++] = array[j];//将s[j]填到s[i]中，s[j]就形成了一个新的坑  
+			array[i] = array[j];//将s[j]填到s[i]中，s[j]就形成了一个新的坑
+			i++;
 		}
 
 		//从左向右找大于或等于x的数来填s[j]
@@ -233,7 +248,8 @@ int partation_v4(array_t<int>& array, int begin, int end) //返回调整后基�
 		}
 		if (i < j)
 		{
-			array[j--] = array[i];//将s[i]填到s[j]中，s[i]就形成了一个新的坑  
+			array[j] = array[i];//将s[i]填到s[j]中，s[i]就形成了一个新的坑
+			j--;
 		}
 	}
 	//退出时，i等于j。将x填到这个坑中。  
