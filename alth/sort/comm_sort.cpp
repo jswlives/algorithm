@@ -1,4 +1,4 @@
-
+ï»¿
 #include "array.h"
 #include "comm_sort.h"
 
@@ -12,14 +12,14 @@ void swap(T* a, T* b)
 
 
 /*
-Ã°ÅİÅÅĞò
-¸´ÔÓ¶È: O(n2)
-Òªµã£º°Ñ×î´óµÄÔªËØÍùºó³Á
-È±µã£º½»»»´ÎÊı±È²åÈëÅÅĞò¶à
+å†’æ³¡æ’åº
+å¤æ‚åº¦: O(n2)
+è¦ç‚¹ï¼šæŠŠæœ€å¤§çš„å…ƒç´ å¾€åæ²‰
+ç¼ºç‚¹ï¼šäº¤æ¢æ¬¡æ•°æ¯”æ’å…¥æ’åºå¤š
 */
 void pop_sort(array_t<int>& array)
 {
-	for (int j = array.size() -1; j >= 0; --j)//²»»áÔ½½ç
+	for (int j = array.size() -1; j >= 0; --j)//ä¸ä¼šè¶Šç•Œ
 	{
 		for (int i = 0; i < j; ++i)
 		{
@@ -32,16 +32,16 @@ void pop_sort(array_t<int>& array)
 }
 
 /*
-²åÈëÅÅĞò
-¸´ÔÓ¶È:O(n2)
-Òªµã£ºÒÑÅÅĞòÇø¼äºÍÎ´ÅÅĞòÇø¼ä¡£³õÊ¼ÒÑÅÅĞòÇø¼äÖ»ÓĞÒ»¸öÔªËØ£¬¾ÍÊÇÊı×éµÄµÚÒ»¸öÔªËØ¡£²åÈëËã·¨µÄºËĞÄË¼ÏëÊÇÈ¡Î´ÅÅĞòÇø¼äÖĞµÄÔªËØ£¬
-	ÔÚÒÑÅÅĞòÇø¼äÖĞÕÒµ½ºÏÊÊµÄ²åÈëÎ»ÖÃ½«Æä²åÈë£¬²¢±£Ö¤ÒÑÅÅĞòÇø¼äÊı¾İÒ»Ö±ÓĞĞò¡£ÖØ¸´Õâ¸ö¹ı³Ì£¬Ö±µ½Î´ÅÅĞòÇø¼äÖĞÔªËØÎª¿Õ£¬Ëã·¨½áÊø
-ÓÅµã£º±ÈÆğÃ°ÅİÅÅĞò£¬ÔªËØ½»»»´ÎÊıÉÙ
+æ’å…¥æ’åº
+å¤æ‚åº¦:O(n2)
+è¦ç‚¹ï¼šå·²æ’åºåŒºé—´å’Œæœªæ’åºåŒºé—´ã€‚åˆå§‹å·²æ’åºåŒºé—´åªæœ‰ä¸€ä¸ªå…ƒç´ ï¼Œå°±æ˜¯æ•°ç»„çš„ç¬¬ä¸€ä¸ªå…ƒç´ ã€‚æ’å…¥ç®—æ³•çš„æ ¸å¿ƒæ€æƒ³æ˜¯å–æœªæ’åºåŒºé—´ä¸­çš„å…ƒç´ ï¼Œ
+	åœ¨å·²æ’åºåŒºé—´ä¸­æ‰¾åˆ°åˆé€‚çš„æ’å…¥ä½ç½®å°†å…¶æ’å…¥ï¼Œå¹¶ä¿è¯å·²æ’åºåŒºé—´æ•°æ®ä¸€ç›´æœ‰åºã€‚é‡å¤è¿™ä¸ªè¿‡ç¨‹ï¼Œç›´åˆ°æœªæ’åºåŒºé—´ä¸­å…ƒç´ ä¸ºç©ºï¼Œç®—æ³•ç»“æŸ
+ä¼˜ç‚¹ï¼šæ¯”èµ·å†’æ³¡æ’åºï¼Œå…ƒç´ äº¤æ¢æ¬¡æ•°å°‘
 */
 
 void insert_sort(array_t<int>& array)
 {
-	for (int j = 1; j < array.size(); ++j)//²»»áÔ½½ç
+	for (int j = 1; j < array.size(); ++j)//ä¸ä¼šè¶Šç•Œ
 	{
 		int value = array[j];
 		int i = j - 1;
@@ -62,10 +62,10 @@ void insert_sort(array_t<int>& array)
 
 
 /*
-Ñ¡ÔñÅÅĞò
-¸´ÔÓ¶È£ºO(n2)
-Òªµã£º·ÖÒÑÅÅĞòÇø¼äºÍÎ´ÅÅĞòÇø¼ä£¬Ã¿´Î»á´ÓÎ´ÅÅĞòÇø¼äÖĞÕÒµ½×îĞ¡µÄÔªËØ£¬½«Æä·Åµ½ÒÑÅÅĞòÇø¼äµÄÄ©Î²£¬ÓëÖ®½»»»
-È±µã:²»ÎÈ¶¨ÅÅĞò
+é€‰æ‹©æ’åº
+å¤æ‚åº¦ï¼šO(n2)
+è¦ç‚¹ï¼šåˆ†å·²æ’åºåŒºé—´å’Œæœªæ’åºåŒºé—´ï¼Œæ¯æ¬¡ä¼šä»æœªæ’åºåŒºé—´ä¸­æ‰¾åˆ°æœ€å°çš„å…ƒç´ ï¼Œå°†å…¶æ”¾åˆ°å·²æ’åºåŒºé—´çš„æœ«å°¾ï¼Œä¸ä¹‹äº¤æ¢
+ç¼ºç‚¹:ä¸ç¨³å®šæ’åº
 */
 
 void select_sort(array_t<int>& array)
@@ -126,12 +126,13 @@ void merge_sort_c(array_t<int>& array, int begin, int end)
 	merge(array, begin, end, begin, mid, mid + 1, end);
 }
 
-//Ê±¼ä¸´ÔÓ¶ÈO(nlogn),µ«¿Õ¼ä¸´ÔÓ¶ÈÊÇO(n)
+//æ—¶é—´å¤æ‚åº¦O(nlogn),ä½†ç©ºé—´å¤æ‚åº¦æ˜¯O(n)
 void merge_sort(array_t<int>& array)
 {
 	merge_sort_c(array, 0, array.size() - 1);
 }
 
+//åŒè¾¹å¾ªç¯æ³•
 int partation(array_t<int>& array, int begin, int end)
 {
 	int pivot = begin;
@@ -139,13 +140,13 @@ int partation(array_t<int>& array, int begin, int end)
 	int left = begin;
 	int right = end;
 
-	while (left != right)
+	while (left != right)//è·Ÿï¼ˆleft < rightï¼‰ä¸€æ ·ï¼Œ ä¸‹é¢çš„whileï¼ˆright > leftï¼‰å·²ç»ä¿è¯äº†
 	{
-		while (right > left && array[right] >= array[pivot])//ÓÃ>£¬ µÈÓÚ»ù×¼ÖµµÄÒªÅ²¹ıÈ¥
+		while (right > left && array[right] > array[pivot])//å°äºç­‰äºåŸºå‡†å€¼çš„æ”¾å·¦è¾¹ï¼ˆ> æˆ–è€… >= éƒ½å¯ä»¥ï¼‰
 		{
 			right--;
 		}
-		while (right > left && array[left] <= array[pivot])//ÓÃ>=£¬ µÈÓÚ»ù×¼ÖµµÄÁôÏÂÀ´²»ÓÃÅ²
+		while (right > left && array[left] <= array[pivot])//å¤§äºåŸºå‡†å€¼çš„æ”¾å³è¾¹(å¿…é¡» <= ï¼Œ å¦åˆ™å¯èƒ½æ­»å¾ªç¯)
 		{
 			left++;
 		}
@@ -160,22 +161,106 @@ int partation(array_t<int>& array, int begin, int end)
 
 }
 
+/*
+
+int partation_v2(array_t<int>& array, int begin, int end)
+{
+	int pivot = array[begin];
+
+	while (left != right)//è·Ÿï¼ˆleft < rightï¼‰ä¸€æ ·ï¼Œ ä¸‹é¢çš„whileï¼ˆright > leftï¼‰å·²ç»ä¿è¯äº†
+	{
+		while (right > left && array[right] >= pivot)//å°äºç­‰äºåŸºå‡†å€¼çš„æ”¾å·¦è¾¹
+		{
+			right--;
+		}
+		if (left( < right))
+		{
+
+		}
+		while (right > left&& array[left] <= array[pivot])//å¤§äºåŸºå‡†å€¼çš„æ”¾å³è¾¹
+		{
+			left++;
+		}
+		if (left < right)
+		{
+			swap(&array[left], &array[right]);
+		}
+	}
+
+}
+*/
+
+//å•è¾¹å¾ªç¯æ³•
+//markçš„å…ƒç´ æ°¸è¿œ<= pivot
+int partation_v3(array_t<int>& array, int begin, int end)
+{
+	int mark = begin;
+	int pivot = array[begin];
+	for (int i = mark + 1; i <= end; ++i)
+	{
+		if (array[i] <= pivot)// <= æˆ–è€… < éƒ½å¯ä»¥
+		{
+			swap(&array[++mark], &array[i]);
+		}
+	}
+	swap(&array[begin], &array[mark]);
+	return mark;
+}
+
+//æŒ–å‘å¡«æ•°æ³•ï¼Œä¼˜ç‚¹æ˜¯åŸ‹å‘ï¼Œä¸ç”¨äº¤æ¢å…ƒç´ ï¼Œå‡å°‘äº¤æ¢æ¬¡æ•°
+int partation_v4(array_t<int>& array, int begin, int end) //è¿”å›è°ƒæ•´ååŸºå‡†æ•°çš„ä½ç½®Â Â 
+{
+	int i = begin;
+	int j = end;
+	int pivot = array[begin]; //s[l]å³s[i]å°±æ˜¯ç¬¬ä¸€ä¸ªå‘Â Â 
+	while (i < j)
+	{
+		// ä»å³å‘å·¦æ‰¾å°äºxçš„æ•°æ¥å¡«s[i] 
+		while (i < j && array[j] >= pivot)
+		{
+			j--;
+		}
+
+		if (i < j)
+		{
+			array[i++] = array[j];//å°†s[j]å¡«åˆ°s[i]ä¸­ï¼Œs[j]å°±å½¢æˆäº†ä¸€ä¸ªæ–°çš„å‘Â Â 
+		}
+
+		//ä»å·¦å‘å³æ‰¾å¤§äºæˆ–ç­‰äºxçš„æ•°æ¥å¡«s[j]
+		while (i < j && array[i] < pivot)
+		{
+			i++;
+		}
+		if (i < j)
+		{
+			array[j--] = array[i];//å°†s[i]å¡«åˆ°s[j]ä¸­ï¼Œs[i]å°±å½¢æˆäº†ä¸€ä¸ªæ–°çš„å‘Â Â 
+		}
+	}
+	//é€€å‡ºæ—¶ï¼Œiç­‰äºjã€‚å°†xå¡«åˆ°è¿™ä¸ªå‘ä¸­ã€‚Â Â 
+	array[i] = pivot;
+
+	return i;
+}
+
 void quick_sort_c(array_t<int>& array, int begin, int end)
 {
 	if (begin >= end)
 	{
 		return;
 	}
-	int idx = partation(array, begin, end);
+	//std::cout << "===============" << std::endl;
+	int idx = partation_v3(array, begin, end);
+	//array.print();
 	quick_sort_c(array, begin, idx - 1);
 	quick_sort_c(array, idx + 1, end);
 }
 
 
 /*
-¿ìÅÅÒªµã:
-1¡¢°ÑÊı×é·ÖÆ¬³ÉÁ½¸ö²¿·Ö
-2¡¢ÔÙ¶Ô×óÓÒÊı×éµİ¹éÅÅĞò
+å¿«æ’è¦ç‚¹:
+1ï¼å…ˆä»æ•°åˆ—ä¸­å–å‡ºä¸€ä¸ªæ•°ä½œä¸ºåŸºå‡†æ•°ã€‚
+2ï¼åˆ†åŒºè¿‡ç¨‹ï¼Œå°†æ¯”è¿™ä¸ªæ•°å¤§çš„æ•°å…¨æ”¾åˆ°å®ƒçš„å³è¾¹ï¼Œå°äºæˆ–ç­‰äºå®ƒçš„æ•°å…¨æ”¾åˆ°å®ƒçš„å·¦è¾¹ã€‚
+3ï¼å†å¯¹å·¦å³åŒºé—´é‡å¤ç¬¬äºŒæ­¥ï¼Œç›´åˆ°å„åŒºé—´åªæœ‰ä¸€ä¸ªæ•°ã€‚
 */
 void quick_sort(array_t<int>& array)
 {

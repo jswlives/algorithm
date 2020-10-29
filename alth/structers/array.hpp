@@ -50,10 +50,12 @@ T& array_t<T>::operator [](int idx)
 template<typename T>
 void array_t<T>::print()
 {
+	std::cout << "=========begin============" << std::endl;
 	for (int i = 0; i < count; ++i)
 	{
 		std::cout << "idx:" << i << " value:" << pdata[i] << std::endl;
 	}
+	std::cout << "=========end============" << std::endl;
 }
 
 template<typename T>
