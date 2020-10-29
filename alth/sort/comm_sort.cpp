@@ -271,7 +271,7 @@ void quick_sort_c(array_t<int>& array, int begin, int end)
 	quick_sort_c(array, idx + 1, end);
 }
 
-
+//https://zhuanlan.zhihu.com/p/266835035
 /*
 快排要点:
 1．先从数列中取出一个数作为基准数。
