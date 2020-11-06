@@ -44,15 +44,19 @@ int main()
 	}*/
 
 	array_t<int> starray(1000);
-	starray.add(4);
-	starray.add(2);
-	starray.add(5);
-	starray.add(2);
-	starray.add(1);
+	starray.add(47831);
+	starray.add(2254);
+	starray.add(522);
+	starray.add(2546235);
+	starray.add(1214);
 	//starray.add(3);
 	//starray.add(6);
-	quick_sort(starray);
-	starray.print();
-	starray.print_sorted();
+	//quick_sort(starray);
+	//starray.print();
+	//starray.print_sorted();
+
+	int ret = find_no_n(starray, 5);
+
+	std::cout << ret;
 
 }

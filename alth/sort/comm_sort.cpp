@@ -68,6 +68,7 @@ void insert_sort(array_t<int>& array)
 缺点:不稳定排序
 */
 
+//此处做了简化，其实多了交换次数
 void select_sort(array_t<int>& array)
 {
 	for (int i = 0; i < array.size()-1; ++i)
@@ -281,4 +282,39 @@ void quick_sort_c(array_t<int>& array, int begin, int end)
 void quick_sort(array_t<int>& array)
 {
 	quick_sort_c(array, 0, array.size() - 1);
+}
+
+
+
+
+int find_no_n_c(array_t<int>& array, int k, int begin, int end)
+{
+	if (begin >= end)
+	{
+		return array[begin];
+	}
+	int partation = partation_v1(array, begin, end);
+	if (k > (partation + 1))
+	{
+		return find_no_n_c(array, k, partation + 1, end);
+	}
+	else if (k < (partation + 1))
+	{
+		return find_no_n_c(array, k, begin, partation - 1);
+	}
+	else
+	{
+		return array[partation];
+	}
+}
+
+
+int find_no_n(array_t<int>& array, int idx)
+{
+	if (idx > array.size() || idx <= 0)
+	{
+		return -1;
+	}
+	int k = array.size() - idx + 1;
+	return find_no_n_c(array, k, 0, array.size()-1);
 }

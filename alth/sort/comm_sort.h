@@ -7,4 +7,6 @@ void select_sort(array_t<int>& array);
 void merge_sort(array_t<int>& array);
 void quick_sort(array_t<int>& array);
 void quick_sort_v2(array_t<int>& array);
+
+int find_no_n(array_t<int>& array, int idx);
 //todo Ï£¶ûÅÅĞò
