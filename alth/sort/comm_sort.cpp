@@ -171,8 +171,8 @@ int partation_v1(array_t<int>& array, int begin, int end)
 //mark的元素永远<= pivot
 int partation_v2(array_t<int>& array, int begin, int end)
 {
-	int mark = begin;
 	int pivot = array[begin];
+	int mark = begin;
 	for (int i = mark + 1; i <= end; ++i)
 	{
 		if (array[i] < pivot)// <= 或者 < 都可以?
@@ -183,6 +183,24 @@ int partation_v2(array_t<int>& array, int begin, int end)
 	swap(&array[begin], &array[mark]);//不管哪种分区法，基准元素都要放到分区位置
 	return mark;
 }
+
+//极客时间方案
+int partation_v5(array_t<int>& array, int begin, int end)
+{
+	int pivot = array[end];
+	int mark = begin;
+	for (int i = begin; i <= end - 1; ++i)
+	{
+		if (array[i] < pivot)
+		{
+			swap(&array[mark], &array[i]);
+			mark++;
+		}
+	}
+	swap(&array[mark], &array[end]);//不管哪种分区法，基准元素都要放到分区位置
+	return mark;
+}
+
 
 //算法导论版
 int partation_v3(array_t<int>& array, int begin, int end)
@@ -259,23 +277,6 @@ int partation_v4(array_t<int>& array, int begin, int end) //返回调整后基�
 	return i;
 }
 
-//极客时间方案
-int partation_v5(array_t<int> &array, int begin, int right)
-{
-	int pivot = array[right];
-	int mark = begin;
-	for (int j = begin; j <= right -1; ++j)
-	{
-		if (array[j] < pivot)
-		{
-			swap(&array[mark], &array[j]);
-			mark++;
-		}
-	}
-	swap(&array[mark], &array[right]);//不管哪种分区法，基准元素都要放到分区位置
-	return mark;
-}
-
 void quick_sort_c(array_t<int>& array, int begin, int end)
 {
 	if (begin >= end)
@@ -283,7 +284,7 @@ void quick_sort_c(array_t<int>& array, int begin, int end)
 		return;
 	}
 	//std::cout << "===============" << std::endl;
-	int idx = partation_v1(array, begin, end);
+	int idx = partation_v5(array, begin, end);
 	quick_sort_c(array, begin, idx - 1);
 	quick_sort_c(array, idx + 1, end);
 }
