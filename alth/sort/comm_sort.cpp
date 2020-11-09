@@ -166,34 +166,6 @@ int partation_v1(array_t<int>& array, int begin, int end)
 
 }
 
-int repartation_v1(array_t<int>& array, int begin, int end)
-{
-	int pivot = array[begin];
-
-	int left = begin;
-	int right = end;
-
-	while (left != right)//跟（left < right）一样， 下面的while（right > left）已经保证了
-	{
-		while (right > left&& array[right] < pivot)//小于等于基准值的放左边（> 或者 >= 都可以）
-		{
-			right--;
-		}
-		while (right > left&& array[left] >= pivot)//大于基准值的放右边(必须 <= ， 否则可能死循环)
-		{
-			left++;
-		}
-		if (left < right)
-		{
-			swap(&array[left], &array[right]);
-		}
-	}
-	swap(&array[begin], &array[left]);//不管哪种分区法，基准元素都要放到分区位置
-
-	return left;
-
-}
-
 
 //单边循环法(小灰灰算法版)
 //mark的元素永远<= pivot
@@ -288,7 +260,7 @@ int partation_v4(array_t<int>& array, int begin, int end) //返回调整后基�
 }
 
 //极客时间方案
-int partation_v5(array_t<int> array, int begin, int right)
+int partation_v5(array_t<int> &array, int begin, int right)
 {
 	int pivot = array[right];
 	int mark = begin;
@@ -311,7 +283,7 @@ void quick_sort_c(array_t<int>& array, int begin, int end)
 		return;
 	}
 	//std::cout << "===============" << std::endl;
-	int idx = partation_v5(array, begin, end);
+	int idx = partation_v1(array, begin, end);
 	quick_sort_c(array, begin, idx - 1);
 	quick_sort_c(array, idx + 1, end);
 }
@@ -329,8 +301,35 @@ void quick_sort(array_t<int>& array)
 }
 
 
+int repartation(array_t<int>& array, int begin, int end)
+{
+	int pivot = array[begin];
 
+	int left = begin;
+	int right = end;
 
+	while (left != right)//跟（left < right）一样， 下面的while（right > left）已经保证了
+	{
+		while (right > left&& array[right] < pivot)//小于等于基准值的放左边（> 或者 >= 都可以）
+		{
+			right--;
+		}
+		while (right > left&& array[left] >= pivot)//大于基准值的放右边(必须 <= ， 否则可能死循环)
+		{
+			left++;
+		}
+		if (left < right)
+		{
+			swap(&array[left], &array[right]);
+		}
+	}
+	swap(&array[begin], &array[left]);//不管哪种分区法，基准元素都要放到分区位置
+
+	return left;
+
+}
+
+//找第K个元素，那么index肯定落在第index-1
 int find_no_n_c(array_t<int>& array, int k, int begin, int end)
 {
 	std::cout << "find:" << k << "from:";
@@ -344,7 +343,7 @@ int find_no_n_c(array_t<int>& array, int k, int begin, int end)
 	{
 		return array[begin];
 	}
-	int partation = repartation_v1(array, begin, end);
+	int partation = repartation(array, begin, end);
 	std::cout << "partation:" << partation << std::endl << std::endl;
 
 	if (k > (partation + 1))

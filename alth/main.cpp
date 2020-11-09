@@ -3,37 +3,58 @@
 #include <stdlib.h>
 #include "comm_sort.h"
 
-bool TestSort(int iRumtimes, int iArraySize)
+array_t<int> gen_array(int itype, int iArraySize)
 {
-	while (iRumtimes > 0)
+	array_t<int> starray(iArraySize);
+	for (int i = 0; i < iArraySize; ++i)
 	{
-		array_t<int> starray(iArraySize);
-		for (int i = 0; i < iArraySize; ++i)
+		if (itype == 1)
 		{
 			starray.add(1, true);
 		}
-		//starray.print();
-		//merge_sort(starray);
-		//pop_sort(starray);
-		//insert_sort(starray);
-		//select_sort(starray);
-		quick_sort(starray);
+		else if (itype == 2)
+		{
+			starray.add(i, true);
+		}
+		else if (itype == 3)
+		{
+			starray.add(iArraySize - 1);
+		}
+		else
+		{
+			starray.add(rand() % iArraySize);
+		}
+	}
+	return starray;
+}
 
-		if (starray.ordered() == false)
+bool TestSort(int iArraySize)
+{
+
+	//starray.print();
+	//merge_sort(starray);
+	//pop_sort(starray);
+	//insert_sort(starray);
+	//select_sort(starray);
+
+	for (int i = 1; i <= 4; i++)
+	{
+		array_t<int> arrays = gen_array(i, iArraySize);
+		quick_sort(arrays);
+
+		if (arrays.ordered() == false)
 		{
 			return false;
 		}
-
-		iRumtimes--;
-		std::cout << "RemainTimes:" << iRumtimes << std::endl;
+		std::cout << "run:" << i << std::endl;
 	}
+
 	return true;
 }
 
 int main()
 {
-/*
-	bool isSort = TestSort(100, 10000);
+	bool isSort = TestSort(10000);
 	if (isSort)
 	{
 		std::cout << "is sorted ^_^!" << std::endl;
@@ -41,17 +62,6 @@ int main()
 	else
 	{
 		std::cout << "not sorted yet!!!" << std::endl;
-	}*/
-
-	array_t<int> starray(1000);
-	starray.add(7);
-	starray.add(8);
-	starray.add(9);
-	starray.add(1);
-	starray.add(2);
-	starray.add(3);
-	
-	quick_sort(starray);
-	starray.print_sorted();
+	}
 
 }
