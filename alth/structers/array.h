@@ -14,7 +14,7 @@ public:
 	T& operator[](int idx);
 	void print();
 	void print_sorted();
-	bool ordered();
+	bool ordered(bool reserve = false);
 
 private:
 	T* pdata;

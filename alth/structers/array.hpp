@@ -59,11 +59,16 @@ void array_t<T>::print()
 }
 
 template<typename T>
-bool array_t<T>::ordered()
+bool array_t<T>::ordered(bool reserve)
 {
 	for (int i = 0; i < count-1; ++i)
 	{
-		if (pdata[i] > pdata[i+1])
+		if (!reserve && pdata[i] > pdata[i+1])
+		{
+			std::cout << "index:" << i << std::endl;
+			return false;
+		}
+		if (reserve && pdata[i] < pdata[i + 1])
 		{
 			std::cout << "index:" << i << std::endl;
 			return false;

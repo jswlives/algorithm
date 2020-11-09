@@ -140,18 +140,18 @@ void merge_sort(array_t<int>& array)
 //直观易，但容易出错
 int partation_v1(array_t<int>& array, int begin, int end)
 {
-	int pivot = begin;
+	int pivot = array[begin];
 
 	int left = begin;
 	int right = end;
 
 	while (left != right)//跟（left < right）一样， 下面的while（right > left）已经保证了
 	{
-		while (right > left && array[right] > array[pivot])//小于等于基准值的放左边（> 或者 >= 都可以）
+		while (right > left && array[right] > pivot)//小于等于基准值的放左边（> 或者 >= 都可以）
 		{
 			right--;
 		}
-		while (right > left && array[left] <= array[pivot])//大于基准值的放右边(必须 <= ， 否则可能死循环)
+		while (right > left && array[left] <= pivot)//大于基准值的放右边(必须 <= ， 否则可能死循环)
 		{
 			left++;
 		}
@@ -160,7 +160,35 @@ int partation_v1(array_t<int>& array, int begin, int end)
 			swap(&array[left], &array[right]);
 		}
 	}
-	swap(&array[begin], &array[left]);
+	swap(&array[begin], &array[left]);//不管哪种分区法，基准元素都要放到分区位置
+
+	return left;
+
+}
+
+int repartation_v1(array_t<int>& array, int begin, int end)
+{
+	int pivot = array[begin];
+
+	int left = begin;
+	int right = end;
+
+	while (left != right)//跟（left < right）一样， 下面的while（right > left）已经保证了
+	{
+		while (right > left&& array[right] < pivot)//小于等于基准值的放左边（> 或者 >= 都可以）
+		{
+			right--;
+		}
+		while (right > left&& array[left] >= pivot)//大于基准值的放右边(必须 <= ， 否则可能死循环)
+		{
+			left++;
+		}
+		if (left < right)
+		{
+			swap(&array[left], &array[right]);
+		}
+	}
+	swap(&array[begin], &array[left]);//不管哪种分区法，基准元素都要放到分区位置
 
 	return left;
 
@@ -180,7 +208,7 @@ int partation_v2(array_t<int>& array, int begin, int end)
 			swap(&array[++mark], &array[i]);
 		}
 	}
-	swap(&array[begin], &array[mark]);
+	swap(&array[begin], &array[mark]);//不管哪种分区法，基准元素都要放到分区位置
 	return mark;
 }
 
@@ -201,7 +229,7 @@ int partation_v3(array_t<int>& array, int begin, int end)
 			//++i
 		}
 	}
-	swap(&array[end], &array[mark]);
+	swap(&array[end], &array[mark]);//不管哪种分区法，基准元素都要放到分区位置
 	return mark;
 }
 
@@ -254,9 +282,26 @@ int partation_v4(array_t<int>& array, int begin, int end) //返回调整后基�
 		}
 	}
 	//退出时，i等于j。将x填到这个坑中。  
-	array[i] = pivot;
+	array[i] = pivot; //不管哪种分区法，基准元素都要放到分区位置
 
 	return i;
+}
+
+//极客时间方案
+int partation_v5(array_t<int> array, int begin, int right)
+{
+	int pivot = array[right];
+	int mark = begin;
+	for (int j = begin; j <= right -1; ++j)
+	{
+		if (array[j] < pivot)
+		{
+			swap(&array[mark], &array[j]);
+			mark++;
+		}
+	}
+	swap(&array[mark], &array[right]);//不管哪种分区法，基准元素都要放到分区位置
+	return mark;
 }
 
 void quick_sort_c(array_t<int>& array, int begin, int end)
@@ -266,8 +311,7 @@ void quick_sort_c(array_t<int>& array, int begin, int end)
 		return;
 	}
 	//std::cout << "===============" << std::endl;
-	int idx = partation_v3(array, begin, end);
-	//array.print();
+	int idx = partation_v5(array, begin, end);
 	quick_sort_c(array, begin, idx - 1);
 	quick_sort_c(array, idx + 1, end);
 }
@@ -289,11 +333,20 @@ void quick_sort(array_t<int>& array)
 
 int find_no_n_c(array_t<int>& array, int k, int begin, int end)
 {
+	std::cout << "find:" << k << "from:";
+	for (int i = begin; i <= end; ++i)
+	{
+		std::cout << array[i] << ",";
+	}
+	std::cout << std::endl;
+
 	if (begin >= end)
 	{
 		return array[begin];
 	}
-	int partation = partation_v1(array, begin, end);
+	int partation = repartation_v1(array, begin, end);
+	std::cout << "partation:" << partation << std::endl << std::endl;
+
 	if (k > (partation + 1))
 	{
 		return find_no_n_c(array, k, partation + 1, end);
@@ -304,17 +357,17 @@ int find_no_n_c(array_t<int>& array, int k, int begin, int end)
 	}
 	else
 	{
-		return array[partation];
+		return array[partation];//?
 	}
 }
 
-
+//找第K个元素，那么index肯定落在第index-1
 int find_no_n(array_t<int>& array, int idx)
 {
 	if (idx > array.size() || idx <= 0)
 	{
 		return -1;
 	}
-	int k = array.size() - idx + 1;
-	return find_no_n_c(array, k, 0, array.size()-1);
+	//int k = array.size() - idx + 1;
+	return find_no_n_c(array, idx, 0, array.size()-1);
 }
