@@ -173,7 +173,7 @@ int partation_v2(array_t<int>& array, int begin, int end)
 {
 	int pivot = array[begin];
 	int mark = begin;
-	for (int i = mark + 1; i <= end; ++i)
+	for (int i = begin + 1; i <= end; ++i)
 	{
 		if (array[i] < pivot)// <= 或者 < 都可以?
 		{
@@ -184,29 +184,11 @@ int partation_v2(array_t<int>& array, int begin, int end)
 	return mark;
 }
 
-//极客时间方案
-int partation_v5(array_t<int>& array, int begin, int end)
-{
-	int pivot = array[end];
-	int mark = begin;
-	for (int i = begin; i <= end - 1; ++i)
-	{
-		if (array[i] < pivot)
-		{
-			swap(&array[mark], &array[i]);
-			mark++;
-		}
-	}
-	swap(&array[mark], &array[end]);//不管哪种分区法，基准元素都要放到分区位置
-	return mark;
-}
-
-
-//算法导论版
+//算法导论版, 极客时间版，等同于单边循环法
 int partation_v3(array_t<int>& array, int begin, int end)
 {
-	int mark = begin;
 	int pivot = array[end];
+	int mark = begin;
 	for (int i = begin; i < end; ++i)
 	{
 		if (array[i] < pivot)
@@ -219,9 +201,10 @@ int partation_v3(array_t<int>& array, int begin, int end)
 			//++i
 		}
 	}
-	swap(&array[end], &array[mark]);//不管哪种分区法，基准元素都要放到分区位置
+	swap(&array[mark], &array[end]);//不管哪种分区法，基准元素都要放到分区位置
 	return mark;
 }
+
 
 /*
 def Partition(A, p, r) :
@@ -284,7 +267,7 @@ void quick_sort_c(array_t<int>& array, int begin, int end)
 		return;
 	}
 	//std::cout << "===============" << std::endl;
-	int idx = partation_v5(array, begin, end);
+	int idx = partation_v3(array, begin, end);
 	quick_sort_c(array, begin, idx - 1);
 	quick_sort_c(array, idx + 1, end);
 }
