@@ -53,7 +53,9 @@ bool TestSort(int iArraySize)
 }
 
 int main()
+
 {
+	/*
 	bool isSort = TestSort(10000);
 	if (isSort)
 	{
@@ -62,6 +64,8 @@ int main()
 	else
 	{
 		std::cout << "not sorted yet!!!" << std::endl;
-	}
+	}*/
+
+
 
 }

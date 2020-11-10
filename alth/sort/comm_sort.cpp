@@ -5,6 +5,10 @@
 template<typename T>
 void swap(T* a, T* b)
 {
+	if (a == b)
+	{
+		std::cout << "swap self" << std::endl;
+	}
 	T temp = *a;
 	*a = *b;
 	*b = temp;
@@ -267,7 +271,7 @@ void quick_sort_c(array_t<int>& array, int begin, int end)
 		return;
 	}
 	//std::cout << "===============" << std::endl;
-	int idx = partation_v3(array, begin, end);
+	int idx = partation_v1(array, begin, end);
 	quick_sort_c(array, begin, idx - 1);
 	quick_sort_c(array, idx + 1, end);
 }
