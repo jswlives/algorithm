@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "comm_sort.h"
+#include "search.h"
 
 array_t<int> gen_array(int itype, int iArraySize)
 {
@@ -66,6 +67,17 @@ int main()
 		std::cout << "not sorted yet!!!" << std::endl;
 	}*/
 
+	array_t<int> arrays(100);
+	arrays.add(1);
+	arrays.add(2);
+	arrays.add(4);
+	arrays.add(4);
+	arrays.add(4);
+	arrays.add(4);
+	arrays.add(4);
+	arrays.add(4);
+	arrays.add(5);
 
+	std::cout << binsearch_first_ge(arrays, 3) << std::endl;
 
 }
